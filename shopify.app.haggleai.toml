@@ -1,0 +1,32 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "b84b1232a3f35aea384dd5fb0745faf6"
+name = "HaggleAI"
+application_url = "https://926cc69dca94.ngrok-free.app"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "ramazan-test-store.myshopify.com"
+
+[webhooks]
+api_version = "2024-10"
+
+[access_scopes]
+scopes = "read_products,write_products,write_app_proxy"
+use_legacy_install_flow = false
+
+[auth]
+redirect_urls = [
+  "https://926cc69dca94.ngrok-free.app/auth/callback",
+  "https://926cc69dca94.ngrok-free.app/auth/shopify/callback",
+  "https://926cc69dca94.ngrok-free.app/api/auth/callback"
+]
+
+[app_proxy]
+url = "https://926cc69dca94.ngrok-free.app/api/proxy"
+subpath = "haggle"
+prefix = "apps"
+
+[pos]
+embedded = false

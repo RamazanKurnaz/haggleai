@@ -1,0 +1,13 @@
+{
+  "name": "haggle-function",
+  "private": true,
+  "scripts": {
+    "build": "javy compile src/run.simple.js -o dist/function.wasm",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  },
+  "devDependencies": {
+  }
+}

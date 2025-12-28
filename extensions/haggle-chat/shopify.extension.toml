@@ -1,0 +1,12 @@
+api_version = "2025-01"
+
+[[extensions]]
+name = "HaggleAI Chat"
+handle = "haggle-chat"
+
+uid = "eefd7535-cbdd-838c-800a-76e2b2bec96fb49325f3"
+
+type = "theme"
+
+[extensions.capabilities]
+block_progress = false

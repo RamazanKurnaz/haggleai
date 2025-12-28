@@ -1,0 +1,19 @@
+api_version = "2025-01"
+
+[[extensions]]
+name = "HaggleAI Price Transform"
+handle = "haggle-cart-transform"
+
+uid = "ca4b8f50-8a25-e010-da64-81fed700ec3ee6f1aa2e"
+
+type = "function"
+
+  [[extensions.targeting]]
+  target = "purchase.cart-transform.run"
+  input_query = "src/run.graphql"
+  export = "run"
+
+  [extensions.build]
+  command = "npm run build"
+  path = "dist/function.wasm"
+

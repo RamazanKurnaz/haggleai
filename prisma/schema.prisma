@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// SQLite for local development (change to postgresql for production)
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id          String    @id
+  shop        String
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String
+  userId      BigInt?
+}
+
+model NegotiationSession {
+  sessionId     String   @id @default(uuid())
+  shop          String
+  cartId        String
+  productId     String
+  variantId     String   @default("")
+  originalPrice Float
+  minFloorPrice Float
+  currentOffer  Float?
+  status        String   @default("PENDING") // PENDING, ACCEPTED, REJECTED
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([cartId])
+  @@index([shop])
+}
+
+model ShopConfig {
+  id                    String   @id @default(uuid())
+  shop                  String   @unique
+  maxDiscountPercentage Float    @default(20)
+  hmacSecretKey         String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}

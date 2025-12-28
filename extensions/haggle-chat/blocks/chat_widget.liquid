@@ -1,0 +1,55 @@
+{% schema %}
+{
+  "name": "HaggleAI Widget",
+  "target": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "autofill": true
+    },
+    {
+      "type": "text",
+      "id": "app_proxy_path",
+      "label": "App proxy path",
+      "default": "/apps/haggle",
+      "info": "The app proxy URL configured in your Shopify Admin."
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#6366f1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable HaggleAI",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
+
+{% if block.settings.enabled %}
+  {% assign haggle_product = block.settings.product | default: product %}
+  {% if haggle_product %}
+    <div id="haggle-ai-root" 
+         data-product-id="{{ haggle_product.id }}" 
+         data-variant-id="{{ haggle_product.selected_or_first_available_variant.id }}"
+         data-product-title="{{ haggle_product.title | escape }}"
+         data-product-price="{{ haggle_product.price | money_without_currency | remove: ',' }}"
+         data-shop-domain="{{ shop.permanent_domain }}"
+         data-button-color="{{ block.settings.button_color }}"
+         data-app-url="{{ block.settings.app_proxy_path }}"
+    ></div>
+    
+    {{ 'haggle-chat.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'haggle-chat.js' | asset_url }}" defer></script>
+  {% endif %}
+{% endif %}
+
