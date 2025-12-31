@@ -13,7 +13,7 @@ dev_store_url = "ramazan-test-store.myshopify.com"
 api_version = "2024-10"
 
 [access_scopes]
-scopes = "read_products,write_products,write_app_proxy"
+scopes = "read_products,write_products,write_app_proxy,write_discounts"
 use_legacy_install_flow = false
 
 [auth]
